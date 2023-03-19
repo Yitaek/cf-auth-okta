@@ -1,9 +1,9 @@
 {
-  "name": "hdb-cf-template",
-  "version": "2.0.0",
-  "description": "An example HarperDB Custom Function",
+  "name": "hdb-cf-auth-okta",
+  "version": "1.0.0",
+  "description": "An example HarperDB Custom Function for Authorizing via Okta",
   "type": "module",
-  "author": "jaxon@harperdb.io",
+  "author": "yitaek.hwang",
   "dependencies": {
     "jsonwebtoken": "^9.0.0"
   }
