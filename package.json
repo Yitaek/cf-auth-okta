@@ -5,6 +5,7 @@
   "type": "module",
   "author": "yitaek.hwang",
   "dependencies": {
+    "@okta/jwt-verifier": "^3.0.1",
     "jsonwebtoken": "^9.0.0"
   }
 }

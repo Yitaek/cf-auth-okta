@@ -1,4 +1,7 @@
 import jwt from 'jsonwebtoken'
+import OktaJwtVerifier from '@okta/jwt-verifier'
+
+const OKTA_DOMAIN = 'replace-me'
 
 async function validate(request, response, next, hdbCore, logger) {
   const { headers } = request
@@ -9,7 +12,13 @@ async function validate(request, response, next, hdbCore, logger) {
   }
 
   const token = authorization.split(" ")[1]
+  const oktaJwtVerifier = new OktaJwtVerifier({
+    issuer: `https://${OKTA_DOMAIN}.us.auth0.com/`,
+    jwksUri: `https://${OKTA_DOMAIN}.us.auth0.com/.well-known/jwks.json`
+  });
+
   try {
+    await oktaJwtVerifier.verifyAccessToken(token, ['harperdb'])
     const decoded = jwt.decode(token)
     const { scope } = decoded
     request.body.hdb_user = { role: { permission: {} } }
